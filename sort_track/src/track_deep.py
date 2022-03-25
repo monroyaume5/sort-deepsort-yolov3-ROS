@@ -19,6 +19,7 @@ import cv2
 from sensor_msgs.msg import Image
 from sort_track.msg import IntList
 from _collections import deque
+import matplotlib.pyplot as plt
 
 
 def get_parameters():
