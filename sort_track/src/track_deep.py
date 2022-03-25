@@ -18,6 +18,7 @@ from cv_bridge import CvBridge
 import cv2
 from sensor_msgs.msg import Image
 from sort_track.msg import IntList
+from _collections import deque
 
 
 def get_parameters():
@@ -101,6 +102,14 @@ def callback_image(data):
                 cv2.putText(cv_rgb, class_name + "-" + str(track.track_id),(int(bbox[0]), int(bbox[1]-10)),0, 0.75, (255,255,255),2)
         	#cv2.rectangle(cv_rgb, (int(bbox[0]), int(bbox[1])), (int(bbox[2]), int(bbox[3])),(255,255,255), 1)
             	#cv2.putText(cv_rgb, str(track.track_id),(int(bbox[2]), int(bbox[1])),0, 5e-3 * 200, (255,255,255),1)
+		##for showing trajectory
+		center = (int(((bbox[0]) + (bbox[2]))/2), int(((bbox[1])+(bbox[3]))/2))
+                pts[track.track_id].append(center)
+                for j in range(1, len(pts[track.track_id])):
+                    if pts[track.track_id][j-1] is None or pts[track.track_id][j] is None:
+                        continue
+                    thickness = int(np.sqrt(64/float(j+1))*2)
+                    cv2.line(img, (pts[track.track_id][j-1]), (pts[track.track_id][j]), color, thickness)
 	cv2.imshow("YOLOV4+SORT", cv_rgb)
 	cv2.waitKey(3)
 		
@@ -110,8 +119,12 @@ def main():
 	global encoder
 	global msg
 	global allowed_classes
+	global pts
 	# custom allowed classes (uncomment line below to customize tracker for only people)
         allowed_classes = ['person']
+	##for showing trajectory
+        pts = [deque(maxlen=30) for _ in range(1000)]
+	
 	msg = IntList()
 	# Definition of the parameters
         max_cosine_distance = 0.4  #max_cosine_distance = 0.2
