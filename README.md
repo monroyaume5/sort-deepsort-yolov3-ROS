@@ -1,3 +1,10 @@
+# Change to use YOLOV4 + DEEP SORT for ROS 
+Clone YOLOV4 from https://github.com/leicheng5/YOLO_V4_ROS
+
+
+
+
+
 # YOLO + SORT/DEEP SORT for ROS (not maintained anymore)
 Tracker ROS node (sort and deep sort) using darknet_ros (YOLOv3).
 Detected bounding boxes from YOLO are used by the sort tracker.  
