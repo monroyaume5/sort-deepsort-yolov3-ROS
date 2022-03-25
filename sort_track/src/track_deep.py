@@ -42,6 +42,11 @@ def callback_det(data):
 		detections.append(np.array([box.xmin, box.ymin, box.xmax-box.xmin, box.ymax-box.ymin]))
 		scores.append(float('%.2f' % box.probability))
 		classes.append(box.Class)
+	#for box in data.bounding_boxes:
+	#	if box.Class in allowed_classes:
+	#	    detections.append(np.array([box.xmin, box.ymin, box.xmax-box.xmin, box.ymax-box.ymin]))
+	#	    scores.append(float('%.2f' % box.probability))
+	#	    classes.append(box.Class)	
 	detections = np.array(detections)
 
 
@@ -104,6 +109,9 @@ def main():
 	global tracker  #remember global
 	global encoder
 	global msg
+	global allowed_classes
+	# custom allowed classes (uncomment line below to customize tracker for only people)
+        allowed_classes = ['person']
 	msg = IntList()
 	# Definition of the parameters
         max_cosine_distance = 0.4  #max_cosine_distance = 0.2
