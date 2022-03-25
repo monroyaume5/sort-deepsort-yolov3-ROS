@@ -5,7 +5,7 @@ for allowed class to track and object counting ref to https://github.com/theAIGu
 
 for showing trajectory and object counting ref to https://github.com/emasterclassacademy/Single-Multiple-Custom-Object-Detection-and-Tracking
 
-
+for vehicle ref to https://github.com/Haantzy/YOLO_for_Real-Time_Object_Counting
 
 
 
