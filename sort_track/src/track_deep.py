@@ -52,11 +52,11 @@ def callback_det(data):
 
 
 def callback_image(data):
-	#initialize color map and for each bbox using different color
+	#initialize color map and for each bbox, using different color
         cmap = plt.get_cmap('tab20b')
         colors = [cmap(i)[:3] for i in np.linspace(0, 1, 20)]
-	#Display Image
-	bridge = CvBridge()
+        #Display Image
+        bridge = CvBridge()
 	cv_rgb = bridge.imgmsg_to_cv2(data, "bgr8")
 	#Features and detections
 	features = encoder(cv_rgb, detections)
