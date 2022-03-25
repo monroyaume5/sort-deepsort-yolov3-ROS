@@ -143,11 +143,11 @@ def main():
 	rate = rospy.Rate(10)
 	# Get the parameters
 	(camera_topic, detection_topic, tracker_topic) = get_parameters()
-	#Subscribe to darknet_ros to get BoundingBoxes from YOLOv3
+	#Subscribe to darknet_ros to get BoundingBoxes from YOLO
 	sub_detection = rospy.Subscriber(detection_topic, BoundingBoxes , callback_det)
 	#Subscribe to image topic
 	image_sub = rospy.Subscriber(camera_topic,Image,callback_image)
-	##Subscribe to darknet_ros to get BoundingBoxes from YOLOv3
+	##Subscribe to darknet_ros to get BoundingBoxes from YOLO
 	#sub_detection = rospy.Subscriber(detection_topic, BoundingBoxes , callback_det)
 	while not rospy.is_shutdown():
 		#Publish results of object tracking
