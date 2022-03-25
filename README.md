@@ -1,9 +1,9 @@
 # Change to use YOLOV4 + DEEP SORT for ROS 
 Clone YOLOV4 from https://github.com/leicheng5/YOLO_V4_ROS
 
-for allowed class to track ref to https://github.com/theAIGuysCode/yolov4-deepsort/
+for allowed class to track and object counting ref to https://github.com/theAIGuysCode/yolov4-deepsort/
 
-for showing trajectory ref to https://github.com/emasterclassacademy/Single-Multiple-Custom-Object-Detection-and-Tracking
+for showing trajectory and object counting ref to https://github.com/emasterclassacademy/Single-Multiple-Custom-Object-Detection-and-Tracking
 
 
 
