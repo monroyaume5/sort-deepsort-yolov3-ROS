@@ -14,7 +14,7 @@ from deep_sort import nn_matching
 from deep_sort.tracker import Tracker
 from deep_sort import generate_detections as gdet
 from deep_sort import preprocessing as prep
-from cv_bridge import CvBridge
+#from cv_bridge import CvBridge
 import cv2
 from sensor_msgs.msg import Image
 from sort_track.msg import IntList
@@ -57,8 +57,9 @@ def callback_image(data):
     cmap = plt.get_cmap('tab20b')
     colors = [cmap(i)[:3] for i in np.linspace(0, 1, 20)]
     #Display Image
-    bridge = CvBridge()
-    cv_rgb = bridge.imgmsg_to_cv2(data, "bgr8")
+    #bridge = CvBridge()
+    #cv_rgb = bridge.imgmsg_to_cv2(data, "bgr8")
+    cv_rgb = cv2.cvtColor(data, cv2.COLOR_BGR2RGB)
     #Features and detections
     features = encoder(cv_rgb, detections)
 
@@ -110,7 +111,7 @@ def callback_image(data):
             if pts[track.track_id][j-1] is None or pts[track.track_id][j] is None:
                 continue
             thickness = int(np.sqrt(64/float(j+1))*2)
-            cv2.line(img, (pts[track.track_id][j-1]), (pts[track.track_id][j]), color, thickness)
+            cv2.line(cv_rgb, (pts[track.track_id][j-1]), (pts[track.track_id][j]), color, thickness)
     cv2.imshow("YOLOV4+SORT", cv_rgb)
     cv2.waitKey(3)
         
