@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-ROS node to track objects using DEEP_SORT TRACKER and YOLOv3 detector (darknet_ros)
+ROS node to track objects using DEEP_SORT TRACKER and YOLOv4 detector (darknet_ros)
 Takes detected bounding boxes from darknet_ros and uses them to calculated tracked bounding boxes
 Tracked objects and their ID are published to the sort_track node
 For this reason there is a little delay in the publishing of the image that I still didn't solve
@@ -122,10 +122,12 @@ def main():
 	rate = rospy.Rate(10)
 	# Get the parameters
 	(camera_topic, detection_topic, tracker_topic) = get_parameters()
-	#Subscribe to image topic
-	image_sub = rospy.Subscriber(camera_topic,Image,callback_image)
 	#Subscribe to darknet_ros to get BoundingBoxes from YOLOv3
 	sub_detection = rospy.Subscriber(detection_topic, BoundingBoxes , callback_det)
+	#Subscribe to image topic
+	image_sub = rospy.Subscriber(camera_topic,Image,callback_image)
+	##Subscribe to darknet_ros to get BoundingBoxes from YOLOv3
+	#sub_detection = rospy.Subscriber(detection_topic, BoundingBoxes , callback_det)
 	while not rospy.is_shutdown():
 		#Publish results of object tracking
 		pub_trackers = rospy.Publisher(tracker_topic, IntList, queue_size=10)
